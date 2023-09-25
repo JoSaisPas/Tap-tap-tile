@@ -14,8 +14,9 @@ class Tile extends StatefulWidget{
   final double width;
   final double height;
   final double pos;
-  final double speed;
+  final int speed;
   final Function onEnd;
+  final Function onDestroy;
   final int index;
   const Tile({super.key,
     required this.color,
@@ -25,6 +26,7 @@ class Tile extends StatefulWidget{
     required this.speed,
     required this.onEnd,
     required this.index,
+    required this.onDestroy,
   });
 
   @override
@@ -38,7 +40,7 @@ class _Tile extends State<Tile>{
   @override
   void initState(){
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 0), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
       if(timer.tick == 1){
         timer.cancel();
         setState(() {
@@ -52,13 +54,13 @@ class _Tile extends State<Tile>{
   Widget build(BuildContext context){
     return AnimatedAlign(
       alignment: isDroping ?  Alignment(widget.pos.toDouble(), 1) : Alignment(widget.pos.toDouble(), offScreenTop) ,
-      duration: const Duration(seconds: 3),
+      duration:  Duration(milliseconds: widget.speed),
       onEnd:  (){
         widget.onEnd();
       },
       child: InkWell(
         onTap: (){
-          widget.onEnd();
+          widget.onDestroy();
         },
         child: Container(
           width: widget.width,

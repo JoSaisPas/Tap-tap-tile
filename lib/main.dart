@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game/widget/corridor.dart';
+import 'package:game/view/home.dart';
+
 import 'package:game/widget/data.dart';
 import 'package:game/widget/gameManager.dart';
 
@@ -13,12 +14,12 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return const MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey,
-        body: Center(
-           // child: Corridor(dif: Difficulty.hight)),
-            child: GameManager(dif: Difficulty.middle)),
-      ),
+    home: Home(),
+      // Scaffold(
+      //   backgroundColor: Colors.grey,
+      //   body: Center(
+      //       child: GameManager(dif: Difficulty.middle)),
+      // ),
     );
   }
 }
