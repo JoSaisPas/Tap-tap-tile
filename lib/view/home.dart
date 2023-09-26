@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game/gameController/game_cubit.dart';
 import 'package:game/view/difficulty.dart';
 
 import '../widget/customButton.dart';
@@ -17,15 +19,10 @@ class Home extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-
-          ///Title
           const Text('Tap Tap tile'),
-          CustomButton(str: 'Play', isRight: false, push: () => Navigator.push(context, MaterialPageRoute(settings: const RouteSettings(name: 'Difficulty'), builder: (context) => const DifficultyPage())),),
-          CustomButton(str: 'Custom', isRight: true, push: (){},),
-          CustomButton(str: 'Quit', isRight: false, push: () => exit(0),),
-          ///Play
-          ///Custom
-          ///Quite
+          CustomButton(str: 'Play', isRight: false, action: (){context.read<GameCubit>().chooseDifficulty();},),
+          CustomButton(str: 'Custom', isRight: true, action: (){},),
+          CustomButton(str: 'Quit', isRight: false, action: () => {context.read<GameCubit>().quit()},),
         ],
       ),
     );

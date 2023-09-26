@@ -49,7 +49,13 @@ class _Tile extends State<Tile>{
       }
     });
   }
-  double t = 1;
+
+ @override
+ void dispose(){
+    super.dispose();
+    _timer.cancel();
+  }
+
   @override
   Widget build(BuildContext context){
     return AnimatedAlign(

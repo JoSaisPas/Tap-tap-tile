@@ -3,6 +3,8 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game/gameController/game_cubit.dart';
 import 'package:game/widget/data.dart';
 import 'package:game/widget/tile.dart';
 
@@ -108,13 +110,16 @@ class _GameManager extends State<GameManager>{
   }
 
   void finish(){
-    if(!isFinish){
-      setState(() {
-        isFinish = true;
-        _timer.cancel();
-        customDialog(context, score);
-      });
-    }
+    isFinish = true;
+    _timer.cancel();
+    context.read<GameCubit>().finish(score);
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    _timer.cancel();
+    tiles.clear();
   }
 
   @override
