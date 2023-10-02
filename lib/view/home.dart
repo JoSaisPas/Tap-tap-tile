@@ -21,7 +21,7 @@ class Home extends StatelessWidget{
         children: [
           const Text('Tap Tap tile'),
           CustomButton(str: 'Play', isRight: false, action: (){context.read<GameCubit>().chooseDifficulty();},),
-          CustomButton(str: 'Custom', isRight: true, action: (){},),
+          CustomButton(str: 'Custom', isRight: true, action: (){context.read<GameCubit>().custom();},),
           CustomButton(str: 'Quit', isRight: false, action: () => {context.read<GameCubit>().quit()},),
         ],
       ),

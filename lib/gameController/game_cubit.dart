@@ -1,5 +1,7 @@
 
 
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/gameController/game_state.dart';
 import 'package:game/widget/data.dart';
@@ -31,6 +33,16 @@ class GameCubit extends Cubit<GameState>{
   ///Quit 'view'
   void quit(){
     emit(state.copyWith(status: GameStatus.quit));
+  }
+
+  ///Custom view
+  void custom(){
+    emit(state.copyWith(status: GameStatus.custom));
+  }
+
+  void updateColor(Color color){
+   print('changing color ${state.color} to ${color}');
+   emit(state.copyWith(color: color));
   }
 
 }

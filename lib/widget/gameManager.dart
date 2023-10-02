@@ -27,8 +27,9 @@ import 'custom_dialog.dart';
  * */
 class GameManager extends StatefulWidget{
   final Difficulty dif;
+  final Color color;
 
-  const GameManager({super.key, required this.dif});
+  const GameManager({super.key, required this.dif, required this.color});
 
   @override
   State<GameManager> createState() => _GameManager();
@@ -58,7 +59,7 @@ class _GameManager extends State<GameManager>{
       width = MediaQuery.of(context).size.width / getDifficulty(widget.dif);
       _timer = Timer.periodic( Duration(milliseconds: time), (timer) {
         setState(() {
-          tiles.add( Tile(color: Colors.red, width: width, height: 200, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
+          tiles.add( Tile(color: widget.color, width: width, height: 200, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
         });
       });
     });
@@ -72,7 +73,7 @@ class _GameManager extends State<GameManager>{
     };
     _timer = Timer.periodic(Duration(milliseconds: time), (timer) {
       setState(() {
-        tiles.add( Tile(color: Colors.red, width: width, height: 200, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
+        tiles.add( Tile(color: widget.color, width: width, height: 200, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
       });
     });
   }
