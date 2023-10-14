@@ -46,7 +46,8 @@ const initalSpeedTile = 2000;
 class _GameManager extends State<GameManager>{
   Queue<Tile> tiles = Queue();
   late Timer _timer;
-  late double width = 0;
+  late double width = 0.0;
+  late double height = 0.0;
   bool isFinish = false;
   int score = 0;
   int time = 600;
@@ -57,9 +58,11 @@ class _GameManager extends State<GameManager>{
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       width = MediaQuery.of(context).size.width / getDifficulty(widget.dif);
+      height = MediaQuery.of(context).size.height * 0.18;
+
       _timer = Timer.periodic( Duration(milliseconds: time), (timer) {
         setState(() {
-          tiles.add( Tile(color: widget.color, width: width, height: 200, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
+          tiles.add( Tile(color: widget.color, width: width, height: height, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
         });
       });
     });
@@ -73,7 +76,7 @@ class _GameManager extends State<GameManager>{
     };
     _timer = Timer.periodic(Duration(milliseconds: time), (timer) {
       setState(() {
-        tiles.add( Tile(color: widget.color, width: width, height: 200, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
+        tiles.add( Tile(color: widget.color, width: width, height: height, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
       });
     });
   }

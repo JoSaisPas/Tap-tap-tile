@@ -21,7 +21,8 @@ Dialog myDialog(BuildContext context, GameState state){
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(onPressed: (){context.read<GameCubit>().chooseDifficulty();}, child: const Text('Change difficulty')),
+
+              TextButton(onPressed: (){context.read<GameCubit>().chooseDifficulty();}, child: const Text('Back')),
               ///rejouer
               TextButton(onPressed: (){context.read<GameCubit>().game(state.difficulty);}, child: const Text('Play again')),
               ///leaderboard

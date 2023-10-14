@@ -15,7 +15,7 @@ enum GameStatus {initial, game_setting, game, finish, quit, custom}
 
 class GameState extends Equatable {
 
-  GameState({this.status = GameStatus.custom, this.difficulty = Difficulty.easy, this.score = 0, this.color = const Color(0xff000000),});
+  GameState({this.status = GameStatus.initial, this.difficulty = Difficulty.easy, this.score = 0, this.color = const Color(0xff000000),});
   GameStatus status;
   Difficulty difficulty;
   int score;

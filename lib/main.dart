@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +9,7 @@ import 'package:game/view/home.dart';
 import 'package:game/widget/custom_dialog.dart';
 
 import 'package:game/widget/gameManager.dart';
+
 
 
 /**
@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget{
             switch (state.status){
               case GameStatus.initial:
                 return const Home();
+               // return  Stack(children: [Background(), Home()],);
               case GameStatus.custom:
                 return Custom();
               case GameStatus.game_setting:

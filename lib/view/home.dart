@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/gameController/game_cubit.dart';
-import 'package:game/view/difficulty.dart';
 
 import '../widget/customButton.dart';
 
@@ -14,6 +13,7 @@ class Home extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return  Scaffold(
+      //backgroundColor: Colors.transparent,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
