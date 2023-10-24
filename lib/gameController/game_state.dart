@@ -1,17 +1,10 @@
 
 import 'dart:ui';
-
 import 'package:equatable/equatable.dart';
-
 import '../widget/data.dart';
 
-/**
- * initial : home page
- * dif_choosen : difficulty page
- * game : game page
- * finish : fin de partie donc popup
- * */
-enum GameStatus {initial, game_setting, game, finish, quit, custom}
+
+enum GameStatus {initial, game_setting, game, finish, quit, custom, leaderboard}
 
 class GameState extends Equatable {
 

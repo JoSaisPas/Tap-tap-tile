@@ -45,4 +45,9 @@ class GameCubit extends Cubit<GameState>{
    emit(state.copyWith(color: color));
   }
 
+  ///LeaderView view
+  void leaderBoard(){
+    emit(state.copyWith(status: GameStatus.leaderboard));
+  }
+
 }

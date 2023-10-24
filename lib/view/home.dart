@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +21,8 @@ class Home extends StatelessWidget{
           const Text('Tap Tap tile'),
           CustomButton(str: 'Play', isRight: false, action: (){context.read<GameCubit>().chooseDifficulty();},),
           CustomButton(str: 'Custom', isRight: true, action: (){context.read<GameCubit>().custom();},),
-          CustomButton(str: 'Quit', isRight: false, action: () => {context.read<GameCubit>().quit()},),
+          CustomButton(str: 'LeaderBoard', isRight: false, action: (){context.read<GameCubit>().leaderBoard();},),
+          CustomButton(str: 'Quit', isRight: true, action: () => {context.read<GameCubit>().quit()},),
         ],
       ),
     );
