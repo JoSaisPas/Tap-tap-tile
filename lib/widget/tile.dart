@@ -52,8 +52,9 @@ class _Tile extends State<Tile>{
 
  @override
  void dispose(){
-    super.dispose();
+
     _timer.cancel();
+    super.dispose();
   }
 
   @override

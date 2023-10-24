@@ -121,9 +121,10 @@ class _GameManager extends State<GameManager>{
 
   @override
   void dispose(){
-    super.dispose();
+
     _timer.cancel();
     tiles.clear();
+    super.dispose();
   }
 
   @override
