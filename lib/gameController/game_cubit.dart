@@ -50,4 +50,9 @@ class GameCubit extends Cubit<GameState>{
     emit(state.copyWith(status: GameStatus.leaderboard));
   }
 
+  ///LeaderView view
+  void customTile(){
+    emit(state.copyWith(status: GameStatus.custom_tile));
+  }
+
 }

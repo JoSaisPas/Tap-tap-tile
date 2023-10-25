@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../widget/data.dart';
 
 
-enum GameStatus {initial, game_setting, game, finish, quit, custom, leaderboard}
+enum GameStatus {initial, game_setting, game, finish, quit, custom, leaderboard, custom_tile}
 
 class GameState extends Equatable {
 

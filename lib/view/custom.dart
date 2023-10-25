@@ -16,7 +16,7 @@ class Custom extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          CustomButton(str: 'Color', isRight: false, action: () => {colorAlert(context)}),
+          CustomButton(str: 'Color', isRight: false, action: () => {context.read<GameCubit>().customTile()}),
           CustomButton(str: 'Back', isRight: true, action: () => {context.read<GameCubit>().home()}),
         ],
       ),

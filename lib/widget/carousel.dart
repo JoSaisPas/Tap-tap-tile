@@ -18,6 +18,7 @@ class Carousel extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return   Stack(
+      alignment: Alignment.center,
       children: [
         //Positioned.fill(child: child),
         child,
@@ -127,7 +128,7 @@ class _ItemSelector extends State<ItemSelector>{
                 final percentFromCenter =
                     1.0 - pageDistanceFromSelected / maxScrollDistance;
 
-                final itemScale = 0.9 + (percentFromCenter * 0.5);
+                final itemScale = 0.5 + (percentFromCenter * 0.5);
                 final opacity = 0.25 + ((percentFromCenter * 0.75));
 
                 return  Transform.scale(
@@ -136,8 +137,8 @@ class _ItemSelector extends State<ItemSelector>{
                   opacity: opacity,
                     child: Item(
                         callback: () =>{_onSelectorTapped(index)},
-                        str: 'test ${index% widget.list.length}',
-                        child: null,
+                        str: widget.list[0] is Color ?  '' : '${widget.list[index]}',
+                        color: widget.list[0] is Color ? widget.list[index] : Colors.transparent,
                 )));
               }
           );
@@ -195,14 +196,14 @@ class _ItemSelector extends State<ItemSelector>{
 
 ///Les items du carousel
 class Item extends StatelessWidget{
-  final String str;
+  final String? str;
   final VoidCallback? callback;
-  final Widget? child;
+  final Color? color;
   const Item({
     super.key,
     required this.callback,
     required this.str,
-    required this.child,
+    required this.color,
   });
 
   @override
@@ -211,11 +212,14 @@ class Item extends StatelessWidget{
       onTap: callback,
       child: AspectRatio(
         aspectRatio: 1.0,
-        child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Center(
-              child : Text(str) ,
-            )
+        child: Container(
+          color: color,
+          child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                child : Text(str ?? '', style: const TextStyle(fontSize: 20),) ,
+              )
+          ),
         ),
       ),
     ) ;
