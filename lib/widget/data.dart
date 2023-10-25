@@ -12,3 +12,5 @@ int getDifficulty(Difficulty dif){
       return 5;
   }
 }
+
+enum StyleButton {classic, glass}

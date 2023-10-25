@@ -5,6 +5,7 @@ import 'package:game/database/scoreProvider.dart';
 import 'package:game/gameController/game_cubit.dart';
 import 'package:game/gameController/game_state.dart';
 import 'package:game/view/custom.dart';
+import 'package:game/view/custom_button.dart';
 import 'package:game/view/custom_tile.dart';
 import 'package:game/view/difficulty.dart';
 import 'package:game/view/home.dart';
@@ -50,14 +51,16 @@ class MyApp extends StatelessWidget{
 
             switch (state.status){
               case GameStatus.initial:
-                return const Home();
+                return  Home(state: state,);
                // return  Stack(children: [Background(), Home()],);
               case GameStatus.custom:
-                return Custom();
+                return Custom(state: state,);
               case GameStatus.custom_tile:
               return CustomTile(scoreProvider: scoreProvider, state: state);
+              case GameStatus.custom_button:
+              return CustomButton(scoreProvider: scoreProvider, state: state);
               case GameStatus.game_setting:
-                return const DifficultyPage();
+                return  DifficultyPage(state: state,);
               case GameStatus.game:
                 return GameManager(dif: state.difficulty, color: state.color,);
               case GameStatus.finish:

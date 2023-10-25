@@ -45,14 +45,24 @@ class GameCubit extends Cubit<GameState>{
    emit(state.copyWith(color: color));
   }
 
+  void updateStyleButton(StyleButton styleButton){
+    print('changing style button ${state.styleButton} to ${styleButton}');
+    emit(state.copyWith(styleButton: styleButton));
+  }
+
   ///LeaderView view
   void leaderBoard(){
     emit(state.copyWith(status: GameStatus.leaderboard));
   }
 
-  ///LeaderView view
+  ///Tile color view
   void customTile(){
     emit(state.copyWith(status: GameStatus.custom_tile));
+  }
+
+  ///Button style view
+  void customButton(){
+    emit(state.copyWith(status: GameStatus.custom_button));
   }
 
 }
