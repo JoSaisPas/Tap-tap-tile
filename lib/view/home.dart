@@ -19,7 +19,7 @@ class Home extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Text('Tap Tap tile'),
+          const Text('Tap Tap tile', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),),
 
           createButton(style: state.styleButton, str: 'Play', isRight: false, action: (){context.read<GameCubit>().chooseDifficulty();},),
           createButton(style: state.styleButton, str: 'Custom', isRight: true, action: (){context.read<GameCubit>().custom();},),

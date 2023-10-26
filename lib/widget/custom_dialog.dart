@@ -258,7 +258,7 @@ class _ContentPopUp extends State<ContentPopUp>{
   @override
   Widget build(BuildContext context){
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       height: MediaQuery.of(context).size.height * 0.2,
       child: Column(
         mainAxisSize: MainAxisSize.max,
