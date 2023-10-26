@@ -71,7 +71,6 @@ class _GameManager extends State<GameManager>{
 
   void createTimer(){
     if(_timer.isActive) {
-      print('active');
       _timer.cancel();
     };
     _timer = Timer.periodic(Duration(milliseconds: time), (timer) {
@@ -92,7 +91,6 @@ class _GameManager extends State<GameManager>{
     setState(() {
       tiles.remove(tiles.first);
       score++;
-      print('score : $score');
       updateTime();
       updateSpeed();
     });
@@ -101,7 +99,6 @@ class _GameManager extends State<GameManager>{
   void updateTime(){
     if(score % 10 == 0 && time > minTime){
       time -= decreaseTime;
-      print('time : $time');
       createTimer();
     }
   }
@@ -109,7 +106,6 @@ class _GameManager extends State<GameManager>{
   void updateSpeed(){
     if(score % 10 == 0 && speedTile > minSpeedTile){
       speedTile -= decreaseSpedd;
-      print('speed : $speedTile');
     }
   }
 

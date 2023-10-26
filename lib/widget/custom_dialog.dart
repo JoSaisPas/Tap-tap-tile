@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/database/scoreProvider.dart';
@@ -7,126 +5,6 @@ import 'package:game/gameController/game_cubit.dart';
 import 'package:game/gameController/game_state.dart';
 import 'package:game/main.dart';
 import 'package:game/widget/data.dart';
-
-
-Dialog myDialog(BuildContext context, GameState state){
-  return Dialog(
-    child: Container(
-      padding: const EdgeInsets.all(20),
-      height: MediaQuery.of(context).size.height * 0.2,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text('Fin de la partie'),
-          const Text('Votre score est de'),
-          Text('${state.score}'),
-          ///retour ecran choix difficulty
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-
-              TextButton(onPressed: (){context.read<GameCubit>().chooseDifficulty();}, child: const Text('Back')),
-              ///rejouer
-              TextButton(onPressed: (){context.read<GameCubit>().game(state.difficulty);}, child: const Text('Play again')),
-              ///leaderboard
-              TextButton(onPressed: (){context.read<GameCubit>().leaderBoard();}, child: const Text('LeaderBoard')),
-            ],
-          )
-        ],
-      ),
-    )
-  );
-}
-
-
-/**
- * Pop up nouveau record
- * check la DB
- * affiche la place gagné
- * textfiel pour saisire le nom*/
-Widget _newBestScore(BuildContext context, GameState state, ScoreProvider scoreProvider){
-  TextEditingController controller = TextEditingController();
-  controller.addListener(() { });
-  bool correctName(){
-    if(controller.value.text.isNotEmpty){
-      return true;
-    }
-    return false;
-  }
-  return  Column(
-
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      const Text('Nouveau record !!!'),
-      Text('${state.score}'),
-        TextField(
-         controller: controller,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          label: Text('Pseudo'),
-        ),
-      ),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-
-          TextButton(onPressed: (){
-              if(correctName()){
-                context.read<GameCubit>().chooseDifficulty();
-              }
-            }, child: const Text('Back')),
-          ///rejouer
-          TextButton(onPressed: (){
-          //if(correctName()) {
-            scoreProvider.insert(Score(difficulty :getDifficulty(state.difficulty), score :state.score, name: controller.value.text, ));
-
-            context.read<GameCubit>().game(state.difficulty);
-          //}
-            }, child: const Text('Play again')),
-          ///leaderboard
-          TextButton(onPressed: (){
-            if(correctName()) {
-              context.read<GameCubit>().leaderBoard();
-            }
-            }, child: const Text('LeaderBoard')),
-        ],
-      )
-    ],
-  );
-}
-
-Widget _endGame(context,state){
-  return  Column(
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      const Text('Fin de la partie'),
-      const Text('Votre score est de'),
-      Text('${state.score}'),
-      ///retour ecran choix difficulty
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-
-          TextButton(onPressed: (){context.read<GameCubit>().chooseDifficulty();}, child: const Text('Back')),
-          ///rejouer
-          TextButton(onPressed: (){context.read<GameCubit>().game(state.difficulty);}, child: const Text('Play again')),
-          ///leaderboard
-          TextButton(onPressed: (){context.read<GameCubit>().leaderBoard();}, child: const Text('LeaderBoard')),
-        ],
-      )
-    ],
-  );
-}
-Future<void> test() async{
-  await Future.delayed(Duration(seconds: 1));
-}
-
 
 ///check if new record
 Future<bool>? isNewRecord(GameState state, ScoreProvider scoreProvider) async {
@@ -149,14 +27,15 @@ Future<bool>? isNewRecord(GameState state, ScoreProvider scoreProvider) async {
   return false;
 }
 
-class testFuture extends StatefulWidget{
+class FinishDialog extends StatefulWidget{
   final GameState state;
   final ScoreProvider scoreProvider;
 
-  const testFuture({super.key, required this.state, required this.scoreProvider});
-  State<testFuture> createState() => _testFuture();
+  const FinishDialog({super.key, required this.state, required this.scoreProvider});
+  @override
+  State<FinishDialog> createState() => _FinishDialog();
 }
-class _testFuture extends State<testFuture>{
+class _FinishDialog extends State<FinishDialog>{
   late Future<Score?> future;
   @override
   void initState(){

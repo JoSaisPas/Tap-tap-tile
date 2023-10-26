@@ -83,7 +83,7 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
                       case GameStatus.game:
                         return GameManager(dif: state.difficulty, color: state.color,);
                       case GameStatus.finish:
-                        return testFuture(state: state, scoreProvider: scoreProvider);
+                        return FinishDialog(state: state, scoreProvider: scoreProvider);
                       case GameStatus.leaderboard:
                         return   LeaderBoard(scoreProvider: scoreProvider, state: state,);
                       case GameStatus.quit:

@@ -1,10 +1,6 @@
-
-
-
 import 'package:flutter/material.dart';
 
-import 'customButton.dart';
-
+///Thx to https://docs.flutter.dev/cookbook/effects/photo-filter-carousel
 
 class Carousel extends StatelessWidget{
   final Widget child;
@@ -24,7 +20,6 @@ class Carousel extends StatelessWidget{
     return   Stack(
       alignment: Alignment.center,
       children: [
-        //Positioned.fill(child: child),
         child,
        Positioned(
       left: 0.0,

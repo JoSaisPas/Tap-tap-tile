@@ -73,7 +73,7 @@ class _Tile extends State<Tile>{
           width: widget.width,
           height: widget.height,
           color: widget.color,
-          child: Center(child: Text('${widget.index}'),),
+          child: const Center(child: Text(''),),
         ),
       )
     );

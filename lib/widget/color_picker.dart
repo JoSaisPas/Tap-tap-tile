@@ -1,9 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/gameController/game_cubit.dart';
 
+
+///Unused
 
 const colors = [
   /**
@@ -94,7 +94,7 @@ Future<void> colorAlert(BuildContext context){
         height: MediaQuery.of(context).size.width * .9,
       child: ColorPicker(function: (value){Navigator.pop(context, value); context.read<GameCubit>().updateColor(value);}),),
       actions: [
-        ElevatedButton(onPressed: (){}, child: Text('valider')),
+        ElevatedButton(onPressed: (){}, child: const Text('valider')),
       ],
     );
       });
