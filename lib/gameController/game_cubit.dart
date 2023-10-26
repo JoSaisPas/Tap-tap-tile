@@ -50,6 +50,17 @@ class GameCubit extends Cubit<GameState>{
     emit(state.copyWith(styleButton: styleButton));
   }
 
+  void updateBackgroundStyle(BackgroundStyle style){
+   print(style);
+    print('changing style background ${state.model} to ${style}');
+    emit(state.copyWith(model: getModel(style)));
+  }
+
+  void updateTheme(bool theme){
+    print('changing theme ${state.lightTheme} to ${theme}');
+    emit(state.copyWith(lightTheme: theme));
+  }
+
   ///LeaderView view
   void leaderBoard(){
     emit(state.copyWith(status: GameStatus.leaderboard));
@@ -63,6 +74,11 @@ class GameCubit extends Cubit<GameState>{
   ///Button style view
   void customButton(){
     emit(state.copyWith(status: GameStatus.custom_button));
+  }
+
+  ///Button style view
+  void customBackground(){
+    emit(state.copyWith(status: GameStatus.custom_background));
   }
 
 }

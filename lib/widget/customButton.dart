@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget{
 }
 
 
-const blur = 10.0;
+const blur = 5.0;
 class CustomGlassButton extends StatelessWidget{
   final String str;
   final bool isRight;

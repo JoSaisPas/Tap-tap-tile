@@ -13,17 +13,16 @@ class Custom extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      body: Column(
+    return  Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           createButton(style: state.styleButton, str: 'Color tile', isRight : false, action: () => {context.read<GameCubit>().customTile()}),
           createButton(style: state.styleButton, str: 'Button style', isRight : true,  action: () => {context.read<GameCubit>().customButton()}),
-          createButton(style: state.styleButton, str: 'Back', isRight : false, action: () => {context.read<GameCubit>().home()}),
+          createButton(style: state.styleButton, str: 'Background style', isRight : false,  action: () => {context.read<GameCubit>().customBackground()}),
+          createButton(style: state.styleButton, str: 'Back', isRight : true, action: () => {context.read<GameCubit>().home()}),
         ],
-      ),
     );
   }
 }

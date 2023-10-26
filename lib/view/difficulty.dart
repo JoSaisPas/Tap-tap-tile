@@ -13,8 +13,7 @@ class DifficultyPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return   Scaffold(
-      body: Column(
+    return   Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -24,7 +23,7 @@ class DifficultyPage extends StatelessWidget{
           createButton(style: state.styleButton,str: '5 X 5', isRight: false,  action: () {context.read<GameCubit>().game(Difficulty.hight);},),
           createButton(style: state.styleButton,str: 'Back', isRight: true, action: () => {context.read<GameCubit>().home()}),
         ],
-      ),
+
     );
   }
 }

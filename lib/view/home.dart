@@ -14,9 +14,7 @@ class Home extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return  Scaffold(
-      //backgroundColor: Colors.transparent,
-      body: Column(
+    return   Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,7 +26,7 @@ class Home extends StatelessWidget{
           createButton(style: state.styleButton, str: 'LeaderBoard', isRight: false, action: (){context.read<GameCubit>().leaderBoard();},),
           createButton(style: state.styleButton, str: 'Quit', isRight: true, action: () => {context.read<GameCubit>().quit()},),
         ],
-      ),
+
     );
   }
 }
