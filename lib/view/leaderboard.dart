@@ -49,6 +49,7 @@ class _LeaderBoard extends State<LeaderBoard>{
       body:  Carousel(
         onSelectedItemChange: _onValueChange,
         list: const ['3X3', '4X4',  '5X5'],
+        backButton: null,
         child: FutureBuilder(
             future: widget.scoreProvider.getScoreFromDif(getDifficulty(getDifFromStr((value.value).toString()))),
             builder: (context, snap){

@@ -39,35 +39,12 @@ class _CustomBackground extends State<CustomBackground> with TickerProviderState
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: (){ context.read<GameCubit>().updateBackgroundStyle(value.value); context.read<GameCubit>().custom();},
-          child: const Icon(Icons.arrow_back),
-        ),
-        title: const Text('Back'),
-        actions: [
-          Row(
-            children: [
-              Text('Theme'),
-              Slider(
-                divisions: 1,
-                inactiveColor: Colors.black,
-                  activeColor: Colors.white,
-                  thumbColor: widget.state.lightTheme ? Colors.white : Colors.black,
-                  value: widget.state.lightTheme ? 0.0 : 1.0,
-                  onChanged: (value){
-                    context.read<GameCubit>().updateTheme(value == 0.0 ? true : false);
-                  }
-              ),
-            ],
-          )
-
-        ],
-      ),
       body:  Carousel(
         onSelectedItemChange: _onValueChange,
         list: BackgroundStyle.values.map((e) => e).toList(),
-        child: ButtonStyle(modele: getModel(value.value), ticker: this,),
+        backButton: createButton(style: widget.state.styleButton, str: 'back', isRight: false, action: (){ context.read<GameCubit>().updateBackgroundStyle(value.value); context.read<GameCubit>().custom();}),
+        child: ButtonStyle(state: widget.state, ticker: this, modele: getModel(value.value),),
+
       ),
     );
   }
@@ -75,13 +52,40 @@ class _CustomBackground extends State<CustomBackground> with TickerProviderState
 
 ///Best way ??
 class ButtonStyle extends StatelessWidget{
-  final Modele modele;
-  final TickerProvider ticker;
-  const ButtonStyle({super.key, required this.modele, required this.ticker});
+   final Modele modele;
+   final TickerProvider ticker;
+  final GameState state;
+  const ButtonStyle({
+    super.key,
+     required this.modele,
+     required this.ticker,
+    required this.state,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  MultipleParticules(modele: modele, vsync: ticker,child: Container(),);
+    return
+
+    MultipleParticules(modele: modele, vsync: ticker,child: SizedBox.expand(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Theme', style: TextStyle(fontSize: 25),),
+          Slider(
+              divisions: 1,
+              inactiveColor: Colors.black,
+              activeColor: Colors.white,
+              thumbColor: Colors.red,
+              value: state.lightTheme ? 0.0 : 1.0,
+              onChanged: (value){
+                context.read<GameCubit>().updateTheme(value == 0.0 ? true : false);
+              }
+          ),
+        ],
+      ),
+    ),);
+
+    //
   }
 }
 

@@ -124,7 +124,6 @@ class ParticuleBubbles extends Modele{
   }
 
   Particule addParticule(){
-    print(Random().nextInt(rainbow.length));
     return Particule(
         x: Random().nextDouble() * size!.width ,
         y: Random().nextDouble() * size!.height,

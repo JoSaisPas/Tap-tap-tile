@@ -6,6 +6,7 @@ import 'package:game/widget/carousel.dart';
 
 import '../database/scoreProvider.dart';
 import '../gameController/game_state.dart';
+import '../widget/customButton.dart';
 import '../widget/data.dart';
 
 
@@ -59,18 +60,11 @@ class _LeaderBoard extends State<CustomTile>{
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: (){ context.read<GameCubit>().updateColor(value.value); context.read<GameCubit>().custom();},
-          child: const Icon(Icons.arrow_back),),
-        title: const Text('Back'),
-      ),
-      body:  Carousel(
+    return   Carousel(
         onSelectedItemChange: _onValueChange,
         list: colors,
+        backButton: createButton(style: widget.state.styleButton, str: 'back', isRight: false, action: (){ context.read<GameCubit>().updateColor(value.value); context.read<GameCubit>().custom();}),
         child: TileStyle(color: value.value,),
-      ),
     );
   }
 }

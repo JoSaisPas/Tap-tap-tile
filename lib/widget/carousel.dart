@@ -3,16 +3,20 @@
 
 import 'package:flutter/material.dart';
 
+import 'customButton.dart';
+
 
 class Carousel extends StatelessWidget{
   final Widget child;
   final Function(dynamic) onSelectedItemChange;
   final List list;
+  final Widget? backButton;
   const Carousel({
     super.key,
     required this.child,
     required this.onSelectedItemChange,
     required this.list,
+    required this.backButton,
   });
 
   @override
@@ -32,6 +36,8 @@ class Carousel extends StatelessWidget{
           list: list,
           callback: onSelectedItemChange,)
       ),
+        Positioned(top : MediaQuery.of(context).viewPadding.top, left: 0.0, child: backButton ?? const SizedBox()),
+
       ],
     );
   }
