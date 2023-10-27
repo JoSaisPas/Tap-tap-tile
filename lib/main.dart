@@ -62,6 +62,7 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
             ThemeData.light() : ThemeData.dark(),
 
             home: Scaffold(
+              resizeToAvoidBottomInset: false,
               body: MultipleParticules(
                 modele: state.model,
                 vsync: this,

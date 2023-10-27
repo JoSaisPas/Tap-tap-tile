@@ -41,33 +41,33 @@ class GameCubit extends Cubit<GameState>{
   }
 
   void updateColorTile(Color color){
-   print('changing color ${state.color_tile} to ${color}');
+   //print('changing color ${state.color_tile} to ${color}');
    emit(state.copyWith(color_tile: color));
   }
 
   void updateColorButton(Color color){
-    print('changing color ${state.color_button} to ${color}');
+    //print('changing color ${state.color_button} to ${color}');
     emit(state.copyWith(color_button: color));
   }
 
   void updateStyleButton(StyleButton styleButton){
-    print('changing style button ${state.styleButton} to ${styleButton}');
+    //print('changing style button ${state.styleButton} to ${styleButton}');
     emit(state.copyWith(styleButton: styleButton));
   }
 
   void updateBackgroundStyle(BackgroundStyle style){
-   print(style);
-    print('changing style background ${state.model} to ${style}');
+   //print(style);
+    //print('changing style background ${state.model} to ${style}');
     emit(state.copyWith(model: getModel(style)));
   }
 
   void updateTheme(bool theme){
-    print('changing theme ${state.lightTheme} to ${theme}');
+    //print('changing theme ${state.lightTheme} to ${theme}');
     emit(state.copyWith(lightTheme: theme));
   }
 
   void updateColorFontButton(bool isLight){
-    print('changing theme ${state.lightTheme} to ${isLight}');
+    //print('changing theme ${state.lightTheme} to ${isLight}');
     emit(state.copyWith(color_font_button: isLight));
   }
 

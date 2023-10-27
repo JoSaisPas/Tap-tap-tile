@@ -114,13 +114,12 @@ class ParticuleBubbles extends Modele{
 
   @override
   void animation(Particule particule) {
-    particule.posY += -2.0;
-
+    particule.posY += -particule.speed;
   }
 
   @override
   void init() {
-    particules = List.generate(50, (index) => addParticule());
+    particules = List.generate(50, (index) => addParticule(), growable: true);
   }
 
   Particule addParticule(){
@@ -128,6 +127,7 @@ class ParticuleBubbles extends Modele{
         x: Random().nextDouble() * size!.width ,
         y: Random().nextDouble() * size!.height,
         r: (Random().nextDouble() * 25) + 10.0,
+        s: (Random().nextDouble() * 5) + 1.0,
       //c: rainbow[Random().nextInt(rainbow.length)],
 
     );
@@ -172,14 +172,17 @@ class ParticuleBubbles extends Modele{
   @override
   bool tick() {
     if(particules == null) return false;
-    Size other = Size(size!.width, size!.height + 50);
+    Size other = Size(size!.width, size!.height + 100);
     for(Particule p in particules!){
       if(!other.contains(Offset(p.posX, p.posY))){
         p.posX = Random().nextDouble() * size!.width;
-        p.posY =  size!.height ;
+        p.posY =  other.height ;
+        p.speed = (Random().nextDouble() * 3) + 1.0;
       }
       animation(p);
+
     }
+
 
     return true;
   }
@@ -258,6 +261,113 @@ class ParticuleCrystal extends Modele{
       path.lineTo(p.posX + (p.radius/4), p.posY - (p.radius/2));
       path.lineTo(p.posX , p.posY );
       canvas.drawPath(path, paint);
+    }
+  }
+
+  @override
+  bool tick() {
+    if(particules == null) return false;
+    ///Given a other size in order to let crystal disappear at the bottom
+    Size other = Size(size!.width, size!.height + 350);
+    for(Particule p in particules!){
+      if(!other.contains(Offset(p.posX, p.posY))){
+        p.posX = Random().nextDouble() * size!.width;
+        p.posY =  0 ;
+        p.radius = getRadius();
+        p.speed= (Random().nextDouble() * 10) + 2.0;
+      }
+      animation(p);
+    }
+    return true;
+  }
+
+}
+
+
+/// Nope
+class ParticuleSpiral extends Modele{
+  List<Particule>? particules;
+
+
+  @override
+  void animation(Particule particule) {
+    particule.posX += 0.00005;
+  }
+
+  @override
+  void init() {
+    particules = List.generate(1, (index) => addParticule());
+  }
+
+  Particule addParticule(){
+    return Particule(
+      x : 0,
+        y: 0,
+        r: 500,
+      //   x: Random().nextDouble() * size!.width ,
+      //   y: Random().nextDouble() * size!.height,
+      //   r: getRadius(),
+      //   s: (Random().nextDouble() * 8) + 2.0
+    );
+  }
+
+  double getRadius(){
+    return ((Random().nextInt(9)) + 1) % 9 == 0
+        ? 350
+        : (Random().nextDouble() * 150) + 10.0;
+  }
+
+  @override
+  void initFrom(Modele oldBehaviour) {
+    if (oldBehaviour is ParticuleCrystal) {
+      particules = oldBehaviour.particules;
+    }
+  }
+
+  @override
+  bool get initialized =>  particules != null;
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    if(particules == null) return;
+    final Canvas canvas = context.canvas;
+
+    for (Particule p in particules!){
+      ///Apply de shader to all the screen
+      var rect = Offset.zero & size!;
+
+      ///Apply shader only to the shape
+      var rect2 = Offset(p.posX, p.posY - p.radius) & Size(p.radius/2, p.radius);
+
+      final Paint paint = Paint()
+        ..strokeWidth = 5
+        ..style = PaintingStyle.stroke
+        ..strokeJoin = StrokeJoin.round
+        ..filterQuality
+        ..shader =  const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: Colors.primaries
+        ).createShader(rect);
+      canvas.save();
+      Path path = Path();
+      path.moveTo(size!.width / 2, size!.height / 2);
+
+      ///draw crystals from bottom to top !
+      double radius = 0, angle = 0;
+      for (int n = 0; n < 500; n++) {
+        radius += 0.75;
+        angle += (pi * 2) / 50;
+        var x = size!.width / 2 + radius * cos(angle);
+        var y = size!.height / 2 + radius * sin(angle);
+        path.lineTo(x, y);
+        // canvas.translate(size!.width / 2, size!.height / 2);
+        // canvas.rotate(p.posX);
+        // canvas.translate(-size!.width/2, -size!.height/ 2);
+      }
+
+      canvas.drawPath(path, paint);
+      canvas.restore();
     }
   }
 

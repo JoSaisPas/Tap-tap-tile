@@ -9,7 +9,6 @@ import 'package:game/widget/data.dart';
 ///check if new record
 Future<bool>? isNewRecord(GameState state, ScoreProvider scoreProvider) async {
   List<Score>? list = await scoreProvider.getScoreFromDif(getDifficulty(state.difficulty));
-  print('hallo');
   if(list == null){
     return true;
   }
@@ -49,7 +48,6 @@ class _FinishDialog extends State<FinishDialog>{
       builder: (context, snap){
         if(snap.connectionState == ConnectionState.done){
           //if(snap.hasData){
-          print('aaaaaaaaaa');
           return Dialog(
               child: Container(
                   padding: const EdgeInsets.all(20),

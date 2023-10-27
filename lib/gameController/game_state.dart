@@ -22,7 +22,7 @@ enum GameStatus {
 class GameState extends Equatable {
 
   GameState({
-    this.status = GameStatus.custom,
+    this.status = GameStatus.initial,
     this.difficulty = Difficulty.easy,
     this.score = 0,
     this.color_tile = const Color(0xff000000),
@@ -31,7 +31,7 @@ class GameState extends Equatable {
     this.lightTheme = true,
     this.color_button = const Color(0xff808080),
     this.color_font_button = false,
-  }): this.model =  model ?? ParticuleBubbles();
+  }): this.model =  model ?? ParticuleEmpty();
   GameStatus status;
   Difficulty difficulty;
   int score;
