@@ -35,25 +35,21 @@ class Tile extends StatefulWidget{
 
 class _Tile extends State<Tile>{
 
-  late Timer _timer;
   bool isDroping = false;
   @override
   void initState(){
     super.initState();
-    _timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
-      if(timer.tick == 1){
-        timer.cancel();
-        setState(() {
-          isDroping = !isDroping;
-        });
-      }
+    ///Let the tile fall !
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      setState(() {
+        isDroping = true;
+      });
+
     });
   }
 
  @override
  void dispose(){
-
-    _timer.cancel();
     super.dispose();
   }
 

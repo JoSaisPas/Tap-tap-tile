@@ -1,30 +1,13 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/gameController/game_cubit.dart';
 import 'package:game/widget/data.dart';
 import 'package:game/widget/tile.dart';
 
-import 'custom_dialog.dart';
 
-
-/**
- * gestion du score et du temps
- * pour chaque tile touché, le score augmente
- * */
-
-
-/**
- * un cubit qui gere
- * la liste de tile : pour conserver l'etat après un changement de vitesse
- * le score
- * le timing (influencé par le score )
- * la difficulté
- * le thème des tiles
- * */
 class GameManager extends StatefulWidget{
   final Difficulty dif;
   final Color color;
@@ -39,7 +22,7 @@ const minSpeedTile = 800;
 const decreaseTime = 50;
 
 const minTime = 200;
-const decreaseSpedd = 100;
+const decreaseSpeed = 100;
 const initalTime = 600;
 const initalSpeedTile = 2000;
 
@@ -62,32 +45,33 @@ class _GameManager extends State<GameManager>{
 
       _timer = Timer.periodic( Duration(milliseconds: time), (timer) {
         setState(() {
-          tiles.add( Tile(color: widget.color, width: width, height: height, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
+          tiles.add( Tile(color: widget.color, width: width, height: height, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroyTile, index: tiles.length, key: UniqueKey(),) );
         });
       });
     });
   }
 
-
+  ///Create a new timer with a time in order to pop tiler often
   void createTimer(){
     if(_timer.isActive) {
       _timer.cancel();
     };
     _timer = Timer.periodic(Duration(milliseconds: time), (timer) {
       setState(() {
-        tiles.add( Tile(color: widget.color, width: width, height: height, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroy, index: tiles.length, key: UniqueKey(),) );
+        tiles.add( Tile(color: widget.color, width: width, height: height, pos: randomPos(), speed: speedTile, onEnd: finish, onDestroy: destroyTile, index: tiles.length, key: UniqueKey(),) );
       });
     });
   }
 
-  ///Défini la position d'un tile de façon aléatoir
+  ///Randomize the tile position
   double randomPos(){
-    /// [0 ;getDifficulty(dif)]
     int random = Random().nextInt(getDifficulty(widget.dif));
     return -1.0 + (random * (2/ (getDifficulty(widget.dif) - 1)));
   }
 
-  void destroy(){
+  ///Delete a tile
+  ///Increase score
+  void destroyTile(){
     setState(() {
       tiles.remove(tiles.first);
       score++;
@@ -96,6 +80,7 @@ class _GameManager extends State<GameManager>{
     });
   }
 
+  ///Change time (timer time) according to the current score
   void updateTime(){
     if(score % 10 == 0 && time > minTime){
       time -= decreaseTime;
@@ -103,9 +88,10 @@ class _GameManager extends State<GameManager>{
     }
   }
 
+  ///Change the tile speed according to the current score
   void updateSpeed(){
     if(score % 10 == 0 && speedTile > minSpeedTile){
-      speedTile -= decreaseSpedd;
+      speedTile -= decreaseSpeed;
     }
   }
 
@@ -117,7 +103,6 @@ class _GameManager extends State<GameManager>{
 
   @override
   void dispose(){
-
     _timer.cancel();
     tiles.clear();
     super.dispose();
