@@ -1,5 +1,7 @@
 
 
+import 'dart:ui';
+
 import 'package:game/animated_background/models.dart';
 
 enum Difficulty { easy, middle, hight }
@@ -29,3 +31,26 @@ Modele getModel(BackgroundStyle style){
       return ParticuleCrystal();
   }
 }
+
+const colors = [
+
+  Color(0xff000000),
+  Color(0xff808080),
+  Color(0xffC0C0C0),
+
+  Color(0xffFF0000),
+  Color(0xffC70039),
+  Color(0xffA12626),
+
+  Color(0xffFCF002),
+  Color(0xffFCD700),
+  Color(0xffFFAA00),
+
+  Color(0xff00FF00),
+  Color(0xff49F690),
+  Color(0xff25993A),
+
+  Color(0xff0000FF),
+  Color(0xff176AF3),
+  Color(0xff4EE6DF),
+];

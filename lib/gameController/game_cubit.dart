@@ -40,9 +40,14 @@ class GameCubit extends Cubit<GameState>{
     emit(state.copyWith(status: GameStatus.custom));
   }
 
-  void updateColor(Color color){
-   print('changing color ${state.color} to ${color}');
-   emit(state.copyWith(color: color));
+  void updateColorTile(Color color){
+   print('changing color ${state.color_tile} to ${color}');
+   emit(state.copyWith(color_tile: color));
+  }
+
+  void updateColorButton(Color color){
+    print('changing color ${state.color_button} to ${color}');
+    emit(state.copyWith(color_button: color));
   }
 
   void updateStyleButton(StyleButton styleButton){
@@ -61,6 +66,11 @@ class GameCubit extends Cubit<GameState>{
     emit(state.copyWith(lightTheme: theme));
   }
 
+  void updateColorFontButton(bool isLight){
+    print('changing theme ${state.lightTheme} to ${isLight}');
+    emit(state.copyWith(color_font_button: isLight));
+  }
+
   ///LeaderView view
   void leaderBoard(){
     emit(state.copyWith(status: GameStatus.leaderboard));
@@ -72,8 +82,13 @@ class GameCubit extends Cubit<GameState>{
   }
 
   ///Button style view
-  void customButton(){
-    emit(state.copyWith(status: GameStatus.custom_button));
+  void customButtonStyle(){
+    emit(state.copyWith(status: GameStatus.custom_button_style));
+  }
+
+  ///Button style view
+  void customButtonColor(){
+    emit(state.copyWith(status: GameStatus.custom_button_color));
   }
 
   ///Button style view

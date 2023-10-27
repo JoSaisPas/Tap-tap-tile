@@ -9,6 +9,7 @@ import 'package:game/gameController/game_state.dart';
 import 'package:game/view/custom.dart';
 import 'package:game/view/custom_background.dart';
 import 'package:game/view/custom_button.dart';
+import 'package:game/view/custom_color_button.dart';
 import 'package:game/view/custom_tile.dart';
 import 'package:game/view/difficulty.dart';
 import 'package:game/view/home.dart';
@@ -74,14 +75,16 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
                         return Custom(state: state,);
                       case GameStatus.custom_tile:
                         return CustomTile(scoreProvider: scoreProvider, state: state);
-                      case GameStatus.custom_button:
-                        return CustomButton(scoreProvider: scoreProvider, state: state);
+                      case GameStatus.custom_button_style:
+                        return CustomButtonStyle(scoreProvider: scoreProvider, state: state);
+                      case GameStatus.custom_button_color:
+                        return CustomButtonColor(scoreProvider: scoreProvider, state: state);
                       case GameStatus.custom_background:
                         return CustomBackground(scoreProvider: scoreProvider, state: state);
                       case GameStatus.game_setting:
                         return  DifficultyPage(state: state,);
                       case GameStatus.game:
-                        return GameManager(dif: state.difficulty, color: state.color,);
+                        return GameManager(dif: state.difficulty, color: state.color_tile,);
                       case GameStatus.finish:
                         return FinishDialog(state: state, scoreProvider: scoreProvider);
                       case GameStatus.leaderboard:

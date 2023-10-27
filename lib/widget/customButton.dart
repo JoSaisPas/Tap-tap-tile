@@ -4,12 +4,12 @@ import 'data.dart';
 
 
 TextStyle textStyle = const TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
-Widget createButton({required StyleButton style, required String str, required Alignment alignment, required Function action}){
+Widget createButton({required StyleButton style, required String str, required Alignment alignment, required Function action, required Color color, required bool font_color}){
   switch(style){
     case StyleButton.glass:
-      return CustomGlassButton(str: str, alignment: alignment, action: action);
+      return CustomGlassButton(str: str, alignment: alignment, action: action, color: color, font_color: font_color,);
     case StyleButton.classic:
-      return CustomClassicButton(str: str, alignment: alignment, action: action);
+      return CustomClassicButton(str: str, alignment: alignment, action: action, color: color, font_color: font_color);
   }
 }
 
@@ -17,7 +17,9 @@ class CustomClassicButton extends StatelessWidget{
   final String str;
   final Alignment alignment;
   final Function action;
-  const CustomClassicButton({super.key, required this.str, required this.alignment, required this.action});
+  final Color color;
+  final bool font_color;
+  const CustomClassicButton({super.key, required this.str, required this.alignment, required this.action, required this.color, required this.font_color});
 
   @override
   Widget build(BuildContext context){
@@ -28,10 +30,10 @@ class CustomClassicButton extends StatelessWidget{
           action();
         },
         child: Container(
-          color: Colors.grey,
+          color: color,
           width: MediaQuery.of(context).size.width * .8,
           height: MediaQuery.of(context).size.width * .1,
-          child: Center(child: Text(str, style: textStyle,),),
+          child: Center(child: Text(str, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: font_color ? Colors.white : Colors.black),),),
         ),
       ),
     );
@@ -44,8 +46,9 @@ class CustomGlassButton extends StatelessWidget{
   final String str;
   final Alignment alignment;
   final Function action;
-
-  const CustomGlassButton({super.key, required this.str, required this.alignment, required this.action});
+  final Color color;
+  final bool font_color;
+  const CustomGlassButton({super.key, required this.str, required this.alignment, required this.action, required this.color, required this.font_color});
 
   @override
   Widget build(BuildContext context){
@@ -58,11 +61,11 @@ class CustomGlassButton extends StatelessWidget{
         child: Container(
           width: MediaQuery.of(context).size.width * .8,
           height: MediaQuery.of(context).size.width * .1,
-          color: Colors.grey.withOpacity(0.5),
+          color: color.withOpacity(0.5),
          child: ClipRRect(
            child: BackdropFilter(
              filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-             child: Center(child: Text(str,style: textStyle),),
+             child: Center(child: Text(str,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: font_color? Colors.white : Colors.black)),),
            ),
          ),
         ),

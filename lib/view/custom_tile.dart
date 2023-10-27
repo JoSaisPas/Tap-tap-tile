@@ -10,29 +10,6 @@ import '../widget/customButton.dart';
 import '../widget/data.dart';
 
 
-const colors = [
-
-  Color(0xff000000),
-  Color(0xff808080),
-  Color(0xffC0C0C0),
-
-  Color(0xffFF0000),
-  Color(0xffC70039),
-  Color(0xffA12626),
-
-  Color(0xffFCF002),
-  Color(0xffFCD700),
-  Color(0xffFFAA00),
-
-  Color(0xff00FF00),
-  Color(0xff49F690),
-  Color(0xff25993A),
-
-  Color(0xff0000FF),
-  Color(0xff176AF3),
-  Color(0xff4EE6DF),
-];
-
 class CustomTile extends StatefulWidget{
   final ScoreProvider scoreProvider;
   final GameState state;
@@ -55,7 +32,7 @@ class _LeaderBoard extends State<CustomTile>{
   @override
   void initState(){
     super.initState();
-    value = ValueNotifier<dynamic>(colors[colors.indexOf(widget.state.color)]);
+    value = ValueNotifier<dynamic>(colors[0]);
   }
 
   @override
@@ -63,7 +40,7 @@ class _LeaderBoard extends State<CustomTile>{
     return   Carousel(
         onSelectedItemChange: _onValueChange,
         list: colors,
-        backButton: createButton(style: widget.state.styleButton, str: 'back', alignment : Alignment.centerLeft, action: (){ context.read<GameCubit>().updateColor(value.value); context.read<GameCubit>().custom();}),
+        backButton: createButton(style: widget.state.styleButton, str: 'back', alignment : Alignment.centerLeft, color: widget.state.color_button,font_color: widget.state.color_font_button, action: (){ context.read<GameCubit>().updateColorTile(value.value); context.read<GameCubit>().custom();}),
         child: TileStyle(color: value.value,),
     );
   }

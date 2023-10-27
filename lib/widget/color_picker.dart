@@ -92,7 +92,7 @@ Future<void> colorAlert(BuildContext context){
       content: Container(
         width: MediaQuery.of(context).size.width * .8,
         height: MediaQuery.of(context).size.width * .9,
-      child: ColorPicker(function: (value){Navigator.pop(context, value); context.read<GameCubit>().updateColor(value);}),),
+      child: ColorPicker(function: (value){Navigator.pop(context, value); context.read<GameCubit>().updateColorTile(value);}),),
       actions: [
         ElevatedButton(onPressed: (){}, child: const Text('valider')),
       ],

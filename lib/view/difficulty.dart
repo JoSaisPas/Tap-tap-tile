@@ -18,10 +18,10 @@ class DifficultyPage extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          createButton(style: state.styleButton, str: '3 X 3', alignment : Alignment.centerRight, action: () {context.read<GameCubit>().game(Difficulty.easy);},),
-          createButton(style: state.styleButton,str: '4 X 4', alignment : Alignment.centerLeft,  action: () {context.read<GameCubit>().game(Difficulty.middle);},),
-          createButton(style: state.styleButton,str: '5 X 5', alignment : Alignment.centerRight,  action: () {context.read<GameCubit>().game(Difficulty.hight);},),
-          createButton(style: state.styleButton,str: 'Back', alignment : Alignment.centerLeft, action: () => {context.read<GameCubit>().home()}),
+          createButton(style: state.styleButton, str: '3 X 3', alignment : Alignment.centerRight, color: state.color_button, font_color: state.color_font_button,action: () {context.read<GameCubit>().game(Difficulty.easy);},),
+          createButton(style: state.styleButton,str: '4 X 4', alignment : Alignment.centerLeft, color: state.color_button,  font_color: state.color_font_button,action: () {context.read<GameCubit>().game(Difficulty.middle);},),
+          createButton(style: state.styleButton,str: '5 X 5', alignment : Alignment.centerRight,  color: state.color_button, font_color: state.color_font_button,action: () {context.read<GameCubit>().game(Difficulty.hight);},),
+          createButton(style: state.styleButton,str: 'Back', alignment : Alignment.centerLeft, color: state.color_button, font_color: state.color_font_button,action: () => {context.read<GameCubit>().home()}),
         ],
 
     );
