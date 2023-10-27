@@ -39,7 +39,7 @@ class _CustomButton extends State<CustomButton>{
     return   Carousel(
         onSelectedItemChange: _onValueChange,
         list: StyleButton.values.map((e) => e).toList(),
-        backButton: createButton(style: value.value, str: 'back', isRight: false, action: (){ context.read<GameCubit>().updateStyleButton(value.value); context.read<GameCubit>().custom();}),
+        backButton: createButton(style: value.value, str: 'back', alignment : Alignment.centerLeft, action: (){ context.read<GameCubit>().updateStyleButton(value.value); context.read<GameCubit>().custom();}),
         child: ButtonStyle(styleButton : value.value,),
     );
   }
@@ -53,12 +53,9 @@ class ButtonStyle extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-       children: [
-         //const Align(alignment: Alignment.center, child: FlutterLogo(size: 200,),),
-         createButton(style: styleButton, str: styleButton.name, isRight: false, action: (){},),
-       ],
-    );
+    return Align(alignment: Alignment.center, child: createButton(style: styleButton, str: styleButton.name, alignment : Alignment.center, action: (){},));
+
+
   }
 
 }

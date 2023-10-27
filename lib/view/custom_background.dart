@@ -42,7 +42,7 @@ class _CustomBackground extends State<CustomBackground> with TickerProviderState
       body:  Carousel(
         onSelectedItemChange: _onValueChange,
         list: BackgroundStyle.values.map((e) => e).toList(),
-        backButton: createButton(style: widget.state.styleButton, str: 'back', isRight: false, action: (){ context.read<GameCubit>().updateBackgroundStyle(value.value); context.read<GameCubit>().custom();}),
+        backButton: createButton(style: widget.state.styleButton, str: 'back', alignment : Alignment.centerLeft, action: (){ context.read<GameCubit>().updateBackgroundStyle(value.value); context.read<GameCubit>().custom();}),
         child: ButtonStyle(state: widget.state, ticker: this, modele: getModel(value.value),),
 
       ),

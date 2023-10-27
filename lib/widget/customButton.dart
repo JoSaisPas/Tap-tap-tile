@@ -4,25 +4,25 @@ import 'data.dart';
 
 
 TextStyle textStyle = const TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
-Widget createButton({required StyleButton style, required String str, required bool isRight, required Function action}){
+Widget createButton({required StyleButton style, required String str, required Alignment alignment, required Function action}){
   switch(style){
     case StyleButton.glass:
-      return CustomGlassButton(str: str, isRight: isRight, action: action);
+      return CustomGlassButton(str: str, alignment: alignment, action: action);
     case StyleButton.classic:
-      return CustomClassicButton(str: str, isRight: isRight, action: action);
+      return CustomClassicButton(str: str, alignment: alignment, action: action);
   }
 }
 
 class CustomClassicButton extends StatelessWidget{
   final String str;
-  final bool isRight;
+  final Alignment alignment;
   final Function action;
-  const CustomClassicButton({super.key, required this.str, required this.isRight, required this.action});
+  const CustomClassicButton({super.key, required this.str, required this.alignment, required this.action});
 
   @override
   Widget build(BuildContext context){
     return Align(
-      alignment: isRight ? const Alignment(-1, 0) : const Alignment(1, 0),
+      alignment: alignment,
       child: InkWell(
         onTap: (){
           action();
@@ -42,15 +42,15 @@ class CustomClassicButton extends StatelessWidget{
 const blur = 5.0;
 class CustomGlassButton extends StatelessWidget{
   final String str;
-  final bool isRight;
+  final Alignment alignment;
   final Function action;
 
-  const CustomGlassButton({super.key, required this.str, required this.isRight, required this.action});
+  const CustomGlassButton({super.key, required this.str, required this.alignment, required this.action});
 
   @override
   Widget build(BuildContext context){
     return Align(
-      alignment: isRight ? const Alignment(-1, 0) : const Alignment(1, 0),
+      alignment: alignment,
       child: InkWell(
         onTap: (){
           action();

@@ -63,7 +63,7 @@ class _LeaderBoard extends State<CustomTile>{
     return   Carousel(
         onSelectedItemChange: _onValueChange,
         list: colors,
-        backButton: createButton(style: widget.state.styleButton, str: 'back', isRight: false, action: (){ context.read<GameCubit>().updateColor(value.value); context.read<GameCubit>().custom();}),
+        backButton: createButton(style: widget.state.styleButton, str: 'back', alignment : Alignment.centerLeft, action: (){ context.read<GameCubit>().updateColor(value.value); context.read<GameCubit>().custom();}),
         child: TileStyle(color: value.value,),
     );
   }
