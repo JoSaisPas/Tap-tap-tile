@@ -32,6 +32,12 @@ Modele getModel(BackgroundStyle style){
   }
 }
 
+BackgroundStyle getBackgroundStyle(Modele modele){
+  if(modele is ParticuleEmpty) return BackgroundStyle.classic;
+  if(modele is ParticuleBubbles) return BackgroundStyle.bubble;
+   return BackgroundStyle.crystal;
+}
+
 const colors = [
 
   Color(0xff000000),

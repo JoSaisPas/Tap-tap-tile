@@ -6,9 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/gameController/game_state.dart';
 import 'package:game/widget/data.dart';
 
-class GameCubit extends Cubit<GameState>{
+import '../database/options.dart';
 
-  GameCubit():super(GameState());
+class GameCubit extends Cubit<GameState>{
+  GameCubit(Options? options):super(
+      GameState(
+        color_tile: options?.color_tile,
+        lightTheme: options?.theme,
+        model: options != null ? getModel(options.model) : null,
+        color_button: options?.button_color,
+        styleButton: options?.button_style,
+        color_font_button: options?.button_color_font,
+      ));
 
   ///Difficulty view
  void chooseDifficulty(){

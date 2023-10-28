@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/animated_background/models.dart';
 import 'package:game/animated_background/multiple_particules.dart';
+import 'package:game/database/options.dart';
 import 'package:game/database/scoreProvider.dart';
 import 'package:game/gameController/game_cubit.dart';
 import 'package:game/gameController/game_state.dart';
@@ -33,17 +34,27 @@ import 'package:sqflite/sqflite.dart';
  *      : aniamted background
  *  Gestion de la sauvegarde
  *    */
+Database? bd;
 ScoreProvider scoreProvider = ScoreProvider();
+OptionsProvider optionsProvider = OptionsProvider();
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  scoreProvider.open(join( await getDatabasesPath(), 'tap_tap_tile_database.db'));
+  bd = await openDatabase(join( await getDatabasesPath(), 'tap_tap_tile_database.db'), version : 1, onCreate: (Database db ,int version) async {
+    scoreProvider.createTable('score', db);
+    optionsProvider.createTable('options', db);
+  });
+  scoreProvider.setDb = bd!;
+  optionsProvider.setDb = bd!;
+
+  ///get options
+  Options? options = await optionsProvider.getOptionFromId(1);
   runApp(
-      BlocProvider(create: (_) => GameCubit(),
+      BlocProvider(create: (_) => GameCubit(options),
         child: const MyApp(),),
   );
 }
 
-Modele modele = ParticuleBubbles();
+
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -73,7 +84,7 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
                       case GameStatus.initial:
                         return  Home(state: state,);
                       case GameStatus.custom:
-                        return Custom(state: state,);
+                        return Custom(state: state, optionsProvider: optionsProvider);
                       case GameStatus.custom_tile:
                         return CustomTile(scoreProvider: scoreProvider, state: state);
                       case GameStatus.custom_button_style:

@@ -121,9 +121,9 @@ class _ItemSelector extends State<ItemSelector>{
                   return const SizedBox();
                 }
 
-                final selectedIndex = controller.page!.roundToDouble();
-                final maxScrollDistance = widget.itemPerScreen! / 2;
+                final selectedIndex = controller.page!.roundToDouble(); //2
                 final pageScrollAmount = controller.page! - selectedIndex;
+                final maxScrollDistance = widget.itemPerScreen! / 2;
                 final pageDistanceFromSelected =
                 (selectedIndex - index + pageScrollAmount).abs();
                 final percentFromCenter =
@@ -131,7 +131,6 @@ class _ItemSelector extends State<ItemSelector>{
 
                 final itemScale = 0.5 + (percentFromCenter * 0.5);
                 final opacity = 0.25 + ((percentFromCenter * 0.75));
-
                 return  Transform.scale(
                   scale: itemScale,
                   child: Opacity(

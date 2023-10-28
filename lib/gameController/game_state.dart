@@ -2,7 +2,9 @@
 import 'dart:ui';
 import 'package:equatable/equatable.dart';
 import 'package:game/animated_background/models.dart';
+import '../database/options.dart';
 import '../widget/data.dart';
+import 'package:path/path.dart';
 
   ///Quit long, maybe refactor later !
 enum GameStatus {
@@ -21,17 +23,40 @@ enum GameStatus {
 
 class GameState extends Equatable {
 
+  // GameState({
+  //   this.status = GameStatus.initial,
+  //   this.difficulty = Difficulty.easy,
+  //   this.score = 0,
+  //   this.color_tile = const Color(0xff000000),
+  //   this.styleButton = StyleButton.glass,
+  //   Modele? model,
+  //   this.lightTheme = true,
+  //   this.color_button = const Color(0xff808080),
+  //   this.color_font_button = false,
+  // }): this.model =  model ?? ParticuleEmpty() ;
+
   GameState({
-    this.status = GameStatus.initial,
-    this.difficulty = Difficulty.easy,
-    this.score = 0,
-    this.color_tile = const Color(0xff000000),
-    this.styleButton = StyleButton.glass,
+    GameStatus? status,
+    Difficulty? difficulty,
+    Color? color_tile,
+    int? score,
+    StyleButton? styleButton,
     Modele? model,
-    this.lightTheme = true,
-    this.color_button = const Color(0xff808080),
-    this.color_font_button = false,
-  }): this.model =  model ?? ParticuleEmpty();
+    bool? lightTheme,
+    Color? color_button,
+    bool? color_font_button,
+  }):
+    this.status = status ?? GameStatus.initial,
+    this.difficulty = difficulty ?? Difficulty.easy,
+    this.score = score ?? 0,
+    this.color_tile = color_tile ?? const Color(0xff000000),
+    this.styleButton = styleButton ?? StyleButton.glass,
+    this.model =  model ?? ParticuleEmpty(),
+    this.lightTheme = lightTheme ?? true,
+    this.color_button = color_button ?? const Color(0xff808080),
+    this.color_font_button = color_font_button ?? false;
+
+
   GameStatus status;
   Difficulty difficulty;
   int score;
@@ -41,6 +66,9 @@ class GameState extends Equatable {
   bool lightTheme;
   Color color_button;
   bool color_font_button;
+
+  // db
+  OptionsProvider optionsProvider = OptionsProvider();
 
   GameState copyWith({
     GameStatus? status,
