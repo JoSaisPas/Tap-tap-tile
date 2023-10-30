@@ -20,21 +20,21 @@ Future main() async {
   group('ScoreProvider Unit test (CRUD)', () {
 
     test('Open', () async {
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
       expect(scoreProvider.db.isOpen, true);
       scoreProvider.close();
     });
 
     test('Close', () async {
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
       await scoreProvider.close();
       expect(scoreProvider.db.isOpen, false);
     });
 
     test('Insert', ()  async{
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
       Score score = Score(difficulty: 1, name: 'test', score: 1);
       expect(await scoreProvider.insert(score), score);
@@ -42,7 +42,7 @@ Future main() async {
     });
 
     test('getScore', ()  async{
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       Score score = Score(difficulty: 1, name: 'test', score: 1);
@@ -62,7 +62,7 @@ Future main() async {
 
 
     test('Update', ()  async{
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       Score score = Score(difficulty: 1, name: 'test', score: 1);
@@ -76,7 +76,7 @@ Future main() async {
     });
 
     test('Delete', ()  async{
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       Score score = Score(difficulty: 1, name: 'test', score: 1);
@@ -104,7 +104,7 @@ Future main() async {
 
 
     test('getFromDif', ()async {
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       for(Score s in scores_easy){
@@ -122,7 +122,7 @@ Future main() async {
     });
 
     test('getFromDif should be ordered DESC', ()async {
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       for(Score s in scores_easy){
@@ -145,7 +145,7 @@ Future main() async {
 
     test('Five scores can be saves for a specif difficulty ', () async {
 
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       List<Score>? score_from_db = await scoreProvider.getScoreFromDif(getDifficulty(Difficulty.easy));
@@ -173,7 +173,7 @@ Future main() async {
 
 
     test('should return the index fof updatable score if new score is bigger', ()  async{
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       for(Score s in scores_easy){
@@ -198,7 +198,7 @@ Future main() async {
 
 
     test('canUpdateLeaderBoard', ()  async{
-      ScoreProvider scoreProvider = ScoreProvider();
+      ScoreProvider scoreProvider = ScoreProvider.forTest();
       await scoreProvider.open(inMemoryDatabasePath);
 
       for(Score s in scores_easy){
