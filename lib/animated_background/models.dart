@@ -128,7 +128,6 @@ class ParticuleBubbles extends Modele{
         y: Random().nextDouble() * size!.height,
         r: (Random().nextDouble() * 25) + 10.0,
         s: (Random().nextDouble() * 5) + 1.0,
-      //c: rainbow[Random().nextInt(rainbow.length)],
 
     );
   }

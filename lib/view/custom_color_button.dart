@@ -54,7 +54,6 @@ class ButtonStyle extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    //return Align(alignment: Alignment.center, child: createButton(style: styleButton, str: styleButton.name, alignment : Alignment.center,color: color, action: (){},));
     return
       Column(
         mainAxisAlignment: MainAxisAlignment.center,

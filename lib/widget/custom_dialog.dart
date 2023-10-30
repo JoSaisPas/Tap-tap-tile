@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game/database/scoreProvider.dart';
 import 'package:game/gameController/game_cubit.dart';
 import 'package:game/gameController/game_state.dart';
-import 'package:game/main.dart';
 import 'package:game/widget/data.dart';
 
 ///check if new record
@@ -18,7 +17,7 @@ Future<bool>? isNewRecord(GameState state, ScoreProvider scoreProvider) async {
   }
 
   for(Score score in list){
-    if(score.score! < state.score){
+    if(score.score < state.score){
       return true;
     }
   }
@@ -47,7 +46,6 @@ class _FinishDialog extends State<FinishDialog>{
       future: future,
       builder: (context, snap){
         if(snap.connectionState == ConnectionState.done){
-          //if(snap.hasData){
           return Dialog(
               child: Container(
                   padding: const EdgeInsets.all(20),
@@ -62,24 +60,7 @@ class _FinishDialog extends State<FinishDialog>{
 
 
 }
-// FutureBuilder myDialog2(BuildContext context, GameState state, ScoreProvider scoreProvider){
-//   return  FutureBuilder<Score?>(
-//           future: scoreProvider.canUpdateLeaderboard(getDifficulty(state.difficulty), state.score),
-//           builder: (context, snap){
-//             if(snap.connectionState == ConnectionState.done){
-//             //if(snap.hasData){
-//
-//               return Dialog(
-//                   child: Container(
-//                   padding: const EdgeInsets.all(20),
-//             height: MediaQuery.of(context).size.height * 0.4,
-//             child: ContentPopUp(state: state, newRecord: snap.data)));
-//             }
-//             return const CircularProgressIndicator();
-//           },
-//
-//   );
-// }
+
 
 class ContentPopUp extends StatefulWidget{
   final GameState state;

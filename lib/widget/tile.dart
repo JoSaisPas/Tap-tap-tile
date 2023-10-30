@@ -39,14 +39,13 @@ class _Tile extends State<Tile>{
       setState(() {
         isDroping = true;
       });
-
     });
   }
 
    @override
    void dispose(){
       super.dispose();
-    }
+  }
 
   @override
   Widget build(BuildContext context){

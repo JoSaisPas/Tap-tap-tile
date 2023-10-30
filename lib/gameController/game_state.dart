@@ -23,17 +23,6 @@ enum GameStatus {
 
 class GameState extends Equatable {
 
-  // GameState({
-  //   this.status = GameStatus.initial,
-  //   this.difficulty = Difficulty.easy,
-  //   this.score = 0,
-  //   this.color_tile = const Color(0xff000000),
-  //   this.styleButton = StyleButton.glass,
-  //   Modele? model,
-  //   this.lightTheme = true,
-  //   this.color_button = const Color(0xff808080),
-  //   this.color_font_button = false,
-  // }): this.model =  model ?? ParticuleEmpty() ;
 
   GameState({
     GameStatus? status,

@@ -58,10 +58,6 @@ class _LeaderBoard extends State<LeaderBoard>{
                     top: 20,
                     child:LeaderboardStyle(scores: snap.data));
               }
-              // else{
-              //   return const Center(child: Text('Pas de données pour cette difficutlés'),);
-              // }
-
               return const Center(child:  CircularProgressIndicator(),);
             }
         ),

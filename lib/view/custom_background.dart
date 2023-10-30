@@ -50,7 +50,7 @@ class _CustomBackground extends State<CustomBackground> with TickerProviderState
   }
 }
 
-///Best way ??
+
 class ButtonStyle extends StatelessWidget{
    final Modele modele;
    final TickerProvider ticker;

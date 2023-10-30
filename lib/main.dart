@@ -14,7 +14,6 @@ import 'package:game/view/difficulty.dart';
 import 'package:game/view/home.dart';
 import 'package:game/view/leaderboard.dart';
 import 'package:game/widget/custom_dialog.dart';
-
 import 'package:game/widget/gameManager.dart';
 import 'database/app_database.dart';
 
@@ -42,8 +41,8 @@ class MyApp extends StatefulWidget{
   @override
   State<MyApp> createState() => _MyApp();
 }
-class _MyApp extends State<MyApp> with TickerProviderStateMixin{
 
+class _MyApp extends State<MyApp> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context){
@@ -52,7 +51,6 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
           return MaterialApp(
             theme: state.lightTheme ?
             ThemeData.light() : ThemeData.dark(),
-
             home: Scaffold(
               resizeToAvoidBottomInset: false,
               body: MultipleParticules(
@@ -61,7 +59,6 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
                 child:  BlocConsumer<GameCubit, GameState>(
                   listener: (context, state){},
                   builder: (context, state){
-                    print(db?.scoreProvider);
                     switch (state.status){
                       case GameStatus.initial:
                         return  Home(state: state,);
@@ -90,7 +87,6 @@ class _MyApp extends State<MyApp> with TickerProviderStateMixin{
                 ),
               ),
             ),
-
           );
         });
   }

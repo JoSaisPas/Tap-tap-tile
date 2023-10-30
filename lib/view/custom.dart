@@ -22,9 +22,9 @@ class Custom extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           createButton(style: state.styleButton, str: 'Color tile', alignment : Alignment.centerLeft, color: state.color_button, font_color: state.color_font_button, action: () => {context.read<GameCubit>().customTile()}),
-          createButton(style: state.styleButton, str: 'Button style', alignment : Alignment.centerRight, color: state.color_button, font_color: state.color_font_button,action: () => {context.read<GameCubit>().customButtonStyle()}),
-          createButton(style: state.styleButton, str: 'Button color', alignment : Alignment.centerLeft, color: state.color_button, font_color: state.color_font_button,action: () => {context.read<GameCubit>().customButtonColor()}),
-          createButton(style: state.styleButton, str: 'Background style', alignment : Alignment.centerRight,  color: state.color_button,font_color: state.color_font_button,action: () => {context.read<GameCubit>().customBackground()}),
+          createButton(style: state.styleButton, str: 'Style button', alignment : Alignment.centerRight, color: state.color_button, font_color: state.color_font_button,action: () => {context.read<GameCubit>().customButtonStyle()}),
+          createButton(style: state.styleButton, str: 'Color button', alignment : Alignment.centerLeft, color: state.color_button, font_color: state.color_font_button,action: () => {context.read<GameCubit>().customButtonColor()}),
+          createButton(style: state.styleButton, str: 'Background', alignment : Alignment.centerRight,  color: state.color_button,font_color: state.color_font_button,action: () => {context.read<GameCubit>().customBackground()}),
           createButton(style: state.styleButton, str: 'Back', alignment : Alignment.centerLeft, color: state.color_button, font_color: state.color_font_button,
               action: ()  async {
             context.read<GameCubit>().home();

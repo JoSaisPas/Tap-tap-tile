@@ -54,9 +54,7 @@ class ColorPicker extends StatefulWidget{
 class _ColorPicker extends State<ColorPicker>{
 
   List<Widget> ColorsPoints(){
-    for(Color c in colors){
 
-    }
     return colors.map((e) =>
         InkWell(
           onTap: () => widget.function(e),
