@@ -39,7 +39,11 @@ class Score{
 
 
 class ScoreProvider{
+  ScoreProvider({required this.db});
   late Database db;
+
+  ///only for Test
+  ScoreProvider.forTest();
 
   Future open(String path) async{
     db = await openDatabase(path, version : 1, onCreate: (Database db ,int version) async {
@@ -51,6 +55,17 @@ class ScoreProvider{
         $columnScore integer not null)
       ''');
     });
+  }
+  //-------------------------------
+
+  static Future createTable( Database db) async{
+    await db.execute('''
+      CREATE TABLE $table (
+        $columnId integer primary key autoincrement,
+        $columnDifficulty integer not null,
+        $columnName text not null,
+        $columnScore integer not null)
+      ''');
   }
 
 

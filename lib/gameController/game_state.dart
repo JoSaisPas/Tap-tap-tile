@@ -67,8 +67,6 @@ class GameState extends Equatable {
   Color color_button;
   bool color_font_button;
 
-  // db
-  OptionsProvider optionsProvider = OptionsProvider();
 
   GameState copyWith({
     GameStatus? status,

@@ -39,7 +39,7 @@ class _FinishDialog extends State<FinishDialog>{
   @override
   void initState(){
     super.initState();
-    future = scoreProvider.canUpdateLeaderboard(getDifficulty(widget.state.difficulty), widget.state.score);
+    future = widget.scoreProvider.canUpdateLeaderboard(getDifficulty(widget.state.difficulty), widget.state.score);
   }
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _FinishDialog extends State<FinishDialog>{
               child: Container(
                   padding: const EdgeInsets.all(20),
                   height: MediaQuery.of(context).size.height * 0.4,
-                  child: ContentPopUp(state: widget.state, newRecord: snap.data)));
+                  child: ContentPopUp(state: widget.state, newRecord: snap.data, scoreProvider: widget.scoreProvider,)));
         }
         return const CircularProgressIndicator();
       },
@@ -62,29 +62,30 @@ class _FinishDialog extends State<FinishDialog>{
 
 
 }
-FutureBuilder myDialog2(BuildContext context, GameState state, ScoreProvider scoreProvider){
-  return  FutureBuilder<Score?>(
-          future: scoreProvider.canUpdateLeaderboard(getDifficulty(state.difficulty), state.score),
-          builder: (context, snap){
-            if(snap.connectionState == ConnectionState.done){
-            //if(snap.hasData){
-
-              return Dialog(
-                  child: Container(
-                  padding: const EdgeInsets.all(20),
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: ContentPopUp(state: state, newRecord: snap.data)));
-            }
-            return const CircularProgressIndicator();
-          },
-
-  );
-}
+// FutureBuilder myDialog2(BuildContext context, GameState state, ScoreProvider scoreProvider){
+//   return  FutureBuilder<Score?>(
+//           future: scoreProvider.canUpdateLeaderboard(getDifficulty(state.difficulty), state.score),
+//           builder: (context, snap){
+//             if(snap.connectionState == ConnectionState.done){
+//             //if(snap.hasData){
+//
+//               return Dialog(
+//                   child: Container(
+//                   padding: const EdgeInsets.all(20),
+//             height: MediaQuery.of(context).size.height * 0.4,
+//             child: ContentPopUp(state: state, newRecord: snap.data)));
+//             }
+//             return const CircularProgressIndicator();
+//           },
+//
+//   );
+// }
 
 class ContentPopUp extends StatefulWidget{
   final GameState state;
   final Score? newRecord;
-  const ContentPopUp({super.key, required this.state, required this.newRecord});
+  final ScoreProvider scoreProvider;
+  const ContentPopUp({super.key, required this.state, required this.newRecord, required this.scoreProvider});
 
 
   @override
@@ -124,7 +125,7 @@ class _ContentPopUp extends State<ContentPopUp>{
     if(widget.newRecord != null){
       if(_validate){
         Score s = Score(name: controller.text, score: widget.state.score, difficulty: getDifficulty(widget.state.difficulty));
-        scoreProvider.updateLeaderBoard(getDifficulty(widget.state.difficulty), s);
+        widget.scoreProvider.updateLeaderBoard(getDifficulty(widget.state.difficulty), s);
         function();
       }
     }else{

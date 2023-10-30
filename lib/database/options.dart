@@ -62,10 +62,11 @@ class Options{
 }
 
 class OptionsProvider{
-
+  OptionsProvider({required this.db});
   late Database db;
-  set setDb(Database db) => this.db = db;
 
+  ///Only for test
+  OptionsProvider.forTest();
   Future open(String path) async{
     db = await openDatabase(path, version : 1, onCreate: (Database db ,int version) async {
       await db.execute('''
@@ -80,8 +81,9 @@ class OptionsProvider{
       ''');
     });
   }
+  //----------------------------------------
 
-  Future createTable(String name, Database db) async{
+  static Future createTable(Database db) async{
     await db.execute('''
       CREATE TABLE $table (
         $columnId integer primary key autoincrement,
