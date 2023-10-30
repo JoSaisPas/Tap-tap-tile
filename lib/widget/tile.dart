@@ -1,14 +1,8 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 const offScreenTop = -2.0;
-/*
-* largeur : dépend du nombre de colonne donc de la difficulté
-* hauter : fix ?
-* couleur : dépend du choix de l'utilisateur
-* possition : random
-* vitesse : temps de la partie*/
+
 class Tile extends StatefulWidget{
   final Color color;
   final double width;
@@ -36,6 +30,7 @@ class Tile extends StatefulWidget{
 class _Tile extends State<Tile>{
 
   bool isDroping = false;
+
   @override
   void initState(){
     super.initState();
@@ -48,10 +43,10 @@ class _Tile extends State<Tile>{
     });
   }
 
- @override
- void dispose(){
-    super.dispose();
-  }
+   @override
+   void dispose(){
+      super.dispose();
+    }
 
   @override
   Widget build(BuildContext context){
@@ -62,7 +57,7 @@ class _Tile extends State<Tile>{
         widget.onEnd();
       },
       child: InkWell(
-        onTap: (){
+        onTapDown: (even){
           widget.onDestroy();
         },
         child: Container(
