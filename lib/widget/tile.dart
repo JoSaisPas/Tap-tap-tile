@@ -58,7 +58,7 @@ class _Tile extends State<Tile>{
       },
       child: InkWell(
         onTapDown: (even){
-          widget.onDestroy();
+          widget.onDestroy(widget.key);
         },
         child: Container(
           width: widget.width,

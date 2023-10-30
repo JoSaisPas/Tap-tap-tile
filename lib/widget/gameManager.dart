@@ -19,11 +19,11 @@ class GameManager extends StatefulWidget{
 }
 
 const minSpeedTile = 800;
-const decreaseTime = 50;
+const decreaseTime = 60;
 
 const minTime = 200;
 const decreaseSpeed = 100;
-const initalTime = 600;
+const initalTime = 500;
 const initalSpeedTile = 2000;
 
 class _GameManager extends State<GameManager>{
@@ -71,9 +71,9 @@ class _GameManager extends State<GameManager>{
 
   ///Delete a tile
   ///Increase score
-  void destroyTile(){
+  void destroyTile(UniqueKey uniqueKey){
     setState(() {
-      tiles.remove(tiles.first);
+      tiles.remove(tiles.firstWhere((element) => element.key == uniqueKey));
       score++;
       updateTime();
       updateSpeed();
