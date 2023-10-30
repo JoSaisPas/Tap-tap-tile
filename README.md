@@ -1,16 +1,24 @@
-# game
+# Tap tap tile
 
-A new Flutter project.
+Flutter mobile game (Android)
 
-## Getting Started
+Tap tap tile is a small (prototype) game for android devices, the goal is to tap a maximum of tiles to get the best score.
 
-This project is a starting point for a Flutter application.
+## Details
 
-A few resources to get you started if this is your first Flutter project:
+    3 modes available : 3x3, 4x4 , 5x5.
+    Many custom options available :
+	    Change tile color
+	    Change button appearance: opaque and glass
+	    Active animated background : Empty, Bubble, crystal
+	    Leaderboard : a database store 5 per difficulty
+	    Option : database stores current options set
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![plot](./assets/home.png)
+![plot](./assets/game.png)
+![plot](./assets/custom.png)
+![plot](./assets/custom-button.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## About the animated background
+The animated background is mainly inspired by the flutter_animated_background package, all credits goes to this package.
+https://pub.dev/packages/animated_background
