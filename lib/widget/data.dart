@@ -17,7 +17,7 @@ int getDifficulty(Difficulty dif){
   }
 }
 
-enum StyleButton {classic, glass}
+enum StyleButton {classic, glass, neon}
 
 enum BackgroundStyle {classic, bubble, crystal}
 
