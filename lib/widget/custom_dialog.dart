@@ -5,25 +5,7 @@ import 'package:game/gameController/game_cubit.dart';
 import 'package:game/gameController/game_state.dart';
 import 'package:game/widget/data.dart';
 
-///check if new record
-Future<bool>? isNewRecord(GameState state, ScoreProvider scoreProvider) async {
-  List<Score>? list = await scoreProvider.getScoreFromDif(getDifficulty(state.difficulty));
-  if(list == null){
-    return true;
-  }
 
-  if(list.length < 5){
-    return true;
-  }
-
-  for(Score score in list){
-    if(score.score < state.score){
-      return true;
-    }
-  }
-
-  return false;
-}
 
 class FinishDialog extends StatefulWidget{
   final GameState state;

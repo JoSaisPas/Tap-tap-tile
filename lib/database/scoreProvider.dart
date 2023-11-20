@@ -123,7 +123,7 @@ class ScoreProvider{
   Future<Score?> canUpdateLeaderboard(int dif, int score) async{
     List<Score>? scores = await getScoreFromDif(dif);
     if(lessThanFiveRowForDifficult(scores)){
-      return Score(difficulty: dif, name: '', score: score);
+      return Score(difficulty: dif, name: 'Pseudo', score: score);
     }
     return canUpdateScore(scores, score);
   }

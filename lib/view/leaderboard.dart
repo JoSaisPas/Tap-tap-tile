@@ -56,7 +56,7 @@ class _LeaderBoard extends State<LeaderBoard>{
               if(snap.connectionState == ConnectionState.done){
                 return Positioned(
                     top: 20,
-                    child:LeaderboardStyle(scores: snap.data));
+                    child:LeaderboardStyle(scores: snap.data, isLightTheme : widget.state.lightTheme));
               }
               return const Center(child:  CircularProgressIndicator(),);
             }
@@ -68,17 +68,17 @@ class _LeaderBoard extends State<LeaderBoard>{
 
 class LeaderboardStyle extends StatelessWidget{
   final List<Score>? scores;
-
-  const LeaderboardStyle({super.key, required this.scores});
+  final bool isLightTheme;
+  const LeaderboardStyle({super.key, required this.scores, required this.isLightTheme});
 
   ///Create a row with three Text
   Row _makeRow(String index, String name, String score){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Expanded(child:Center(child: Text(index, style:const TextStyle(color: Colors.black, fontSize: 30)),),),
-        Expanded(child: Center(child:Text(name,style:const TextStyle(color: Colors.black, fontSize: 30),),),),
-        Expanded(child: Center(child:Text(score,style:const TextStyle(color: Colors.black, fontSize: 30)),),),
+        Expanded(child:Center(child: Text(index, style: TextStyle(color : isLightTheme ? Colors.black : Colors.white, fontSize: 30)),),),
+        Expanded(child: Center(child:Text(name,style: TextStyle(color : isLightTheme ? Colors.black : Colors.white, fontSize: 30),),),),
+        Expanded(child: Center(child:Text(score,style: TextStyle(color : isLightTheme ? Colors.black : Colors.white, fontSize: 30)),),),
         const SizedBox(height: 50,),
       ],
     );
